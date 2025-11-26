@@ -1,6 +1,25 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --default-background: #ffffff;
+    --default-foreground: #000000;
+    --background: #FAFFE8;
+    --foreground: #662E30;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --default-background: #000000;
+    --default-foreground: #ffffff;
+    --background: #17090A;
+    --foreground: #FFB42F;
+  }
+}
+
 body {
-  background: black;
-  color: white;
+  animation: paint 1.5s forwards;
+  background: var(--background);
+  color: var(--foreground);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,15 +30,83 @@ body {
   text-align: center;
 }
 
-h1 {
-  margin: 1rem 0 0.5rem 0;
-}
-
+h1,
 h2 {
   margin: 0;
 }
 
-p {
-  margin: 2rem 0 0 0;
-  font-style: italic;
+h1 {
+  margin-bottom: 1rem;
+  font-family: 'UnifrakturMaguntia', serif;
+  font-weight: 400;
+  font-size: 3rem;
+  animation: appear-bottom-h1 800ms 500ms forwards;
+  opacity: 0;
+}
+
+h2 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 400;
+  animation: appear-bottom-h2 800ms 700ms forwards;
+  opacity: 0;
+}
+
+span {
+  opacity: 0;
+  display: inline-block;
+}
+
+span.left {
+  animation: appear-left 1s 600ms forwards;
+}
+
+span.right {
+  animation: appear-right 1s 800ms forwards;
+}
+
+@keyframes paint {
+  from {
+    background: var(--default-background);
+    color: var(--default-foreground);
+  }
+}
+
+@keyframes appear-bottom-h1 {
+  from {
+    transform: translateY(200px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear-bottom-h2 {
+  from {
+    transform: translateY(200px) translateX(-10px) rotate(5deg);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear-left {
+  from {
+    transform: translateX(-200px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear-right {
+  from {
+    transform: translateX(200px);
+  }
+
+  to {
+    opacity: 1;
+  }
 }
